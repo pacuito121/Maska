@@ -1,0 +1,81 @@
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(29, 29, 29);
+}
+#bck{
+    width: 30px;
+    height: 30px;
+    background-color: darkgray;
+    border-radius: 5px;
+    padding: 6px;
+    transition: 0.1s ease-in-out;
+}
+#bck:hover{
+    background-color: rgb(255, 191, 118);
+    border-radius: 15px;
+    width: 40px;
+    height: 40px;
+}
+#head{
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items: center;
+}
+#head *{
+    margin-left: 20px;
+}
+#ttl{
+    text-align: center;
+    font-size: 32px;
+    color: beige;
+    font-family: 'Times New Roman', Times, serif;
+}
+#see{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 10px;
+    width: 97%;
+    height: 20%;
+    background-color: rgb(40, 60, 173);
+}
+#see img{
+    border-style: groove;
+    height: 500px;
+    width: 500px;
+}
+
+#mid{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+#mid img{
+    width: 100px;
+    height: 100px;
+}
+.scroll{
+    background-color: lightskyblue;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    width: 150px;
+    height: 150px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+}   
+.scroll:hover{
+    width: 250px;
+    height: 250px;
+    background-color: rgb(255, 197, 51);
+}
+#bef{
+    transform: scaleX(-1);
+}

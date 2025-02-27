@@ -1,0 +1,77 @@
+body{
+    display: block;
+    background-color: rgb(29, 29, 29);
+}
+#princ{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.music{
+    background-color:rgb(255, 147, 206) ;
+    border-radius: 10px;
+    text-wrap: inherit;
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    color: aliceblue;
+    margin-bottom: 5px;
+}
+.music *{
+    margin-bottom: 3px;
+    margin-top: 3px;
+}
+.info{
+    background-color: coral;
+    border-style: none;
+}
+#results{
+    width: 800px;
+    display: flex;
+    justify-self: center;
+    flex-direction: column;
+    align-items: center;
+    
+}
+#r2{
+    overflow-y: scroll;
+}
+#cador{
+    width: 400px;
+    height: 30px;
+    margin-bottom:8px ;
+}
+.use{
+    width: 700px;
+    height: 80px;
+    background-color: bisque;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+#list{
+    width: 500px;
+    height: 250px;
+    background-color: coral;
+    border-radius: 15px;
+}
+#sit{
+    border-radius: 5px;
+    padding: 10px;
+    border-color: chocolate;
+}
+#data{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+#envia{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#envia *{
+    margin-bottom: 5px;
+}

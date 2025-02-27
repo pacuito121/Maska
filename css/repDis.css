@@ -1,0 +1,160 @@
+body{
+    display: flex;
+    background-color: rgb(29, 29, 29);
+    flex-direction: column;
+    align-items: center;
+}
+#bck{
+    width: 30px;
+    height: 30px;
+    background-color: darkgray;
+    border-radius: 5px;
+    padding: 6px;
+    transition: 0.1s ease-in-out;
+}
+#bck:hover{
+    background-color: rgb(255, 191, 118);
+    border-radius: 15px;
+    width: 40px;
+    height: 40px;
+}
+#ttl{
+    text-align: center;
+    font-size: 32px;
+    color: beige;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#head{
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items: center;
+}
+#head *{
+    margin-left: 20px;
+}
+#table{
+    background-color: coral;
+    width: 1080px;
+    height: 570px;
+    border-radius: 8px;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border-style: groove;
+    align-items: center;
+}
+#cont{
+    display: flex;
+    flex-direction: row;
+    align-items: safe;
+}
+
+.opt{
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    width: 150px;
+    height: 40px;
+    margin-left: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s;
+}
+.buto{
+    background-color: darkgoldenrod;
+    border-radius: 5px;
+    padding: 5px;
+    border-style: none;
+}
+#op1:hover,#op2:hover,#op3:hover,#op4:hover,#op5:hover{
+    background-color: rgb(255, 244, 220);
+
+}
+.music{
+    background-color:darkcyan ;
+    border-radius: 10px;
+    text-wrap: inherit;
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    margin-bottom: 3px;
+}
+.music *{
+    margin-bottom: 3px;
+    margin-top: 3px;
+}
+.opt img{
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+}
+#op1{
+    background-color: aquamarine;
+}
+#op2{
+    background-color: rgb(245, 245, 245);
+}
+#op3{
+    background-color: rgb(255, 202, 127);
+}
+#op4{
+    background-color: rgb(255, 56, 72);
+}
+#op5{
+    background-color: rgb(127, 144, 255);
+}
+#playlist{
+    background-color: rgb(227, 98, 84);
+    border-style:outset ;
+    width:3000px;
+    height: 340px;
+    margin: 5px;
+    border-radius: 7px;
+    border-color: rgb(195, 78, 65);
+    overflow-y: scroll;
+}
+#masax{
+    width:500px; 
+    height:460px;
+    border-style:ridge;
+    margin-bottom: 10px;
+}
+#play{
+    padding: 10px;
+    background-color: crimson;
+    width: 600px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    -webkit-box-shadow: 10px 13px 7px 0px rgba(0,0,0,0.69);
+    -moz-box-shadow: 10px 13px 7px 0px rgba(0,0,0,0.69);
+    box-shadow: 10px 13px 7px 0px rgba(0,0,0,0.69);
+    border-radius: 15px;
+}
+#disco{
+    height: 150px;
+    width: 150px;
+    animation: rotanda infinite 3s;
+}
+
+@keyframes rotanda {
+    0%{
+        transform: rotate(0deg);
+    }
+    25%{
+        transform: rotate(90deg);
+    }
+    50%{
+        transform: rotate(180deg);
+    }
+    75%{
+        transform: rotate(270deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
