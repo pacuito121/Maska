@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/prDis.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1 style="text-align: center;color: azure;">Prueba</h1>
+    <h2 style="text-align: center;color: azure;">A continuacion, se te mostraran diferentes situaciones. Por favor, utilizando la barra de busqueda selecciona una cancion de acorde a la situacion</h2>
+    <section id="princ">
+        <div id="results">
+            <form action="#" method="post" id="maos">
+                <input type="search" name="Bus" id="cador">
+                <input type="submit" name="Send" value="Buscar" id="top">
+            </form>
+            <div id="r2"></div>
+        </div>
+        <div id="pb">
+            <p id="sit" style="color: beige;"></p>
+            <div id="list">
+                <div id="data">
+                    <form action="" method="post" id="envia">
+                        <img src="" id="porta" alt="Min">
+                        <input type="text" name="Nombre" id="Prm1" class="info" disabled value="Nombre Cancion">
+                        <input type="text" name="autor" id="Prm2" class="info" disabled value="Nombre Canal">
+                        <input type="text" name="ur" id="url" style="display: none;">
+                        <input type="submit" value="subir" style="width: 100px;">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="guide"></section>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script>
+        var situaciones = ["Tu historia se recuerda en base a pequeñas partes, que canciones te rememoran a otros tiempos?",
+                    "Ha sido un largo dia, solo quieres descansar. Que musica pondrias para ayudarte?",
+                    "parece que tu amigo esta algo decaido, que cancion le pondrias para animarlo?",
+                    "Es todo o nada, debes darlo todo. Cual sera la musica que se vuelva tu gasolina?",
+                    "Es simple, sea por su tonada o por vuestra historia, que cancion te hace sentir triste?"]
+        var idPlay = ["PLYB1j1gshcjE7lssj55PO1jqjdfgKCikD", 
+                    "PLYB1j1gshcjEPzoCzxklqC6KaN4hr36mL",
+                    "PLYB1j1gshcjFe0fFzkBQmo_1mfHDpI5Pb",
+                    "PLYB1j1gshcjF0xlfKTJjsRaAsX7ozpT96",
+                    "PLYB1j1gshcjHrBCYtplA0lHgLmsjHY1Go"]
+var i = 0
+var sit = document.getElementById("sit")
+var key ="AIzaSyDc99WCBAbMBrcLRSoOZkLuRcNJtOCmud4"
+sit.innerHTML = situaciones[i]
+$("#maos").on("submit", function (e) {
+    e.preventDefault();
+    var context = $("#cador").val()
+    if (context == "") {
+      alert("¡Escribe algo para buscar!");
+    }
+    else {
+      get(context);
+      $("#cador").val("");
+    }
+  });
+$("#envia").on("submit",function(e){
+    e.preventDefault();
+    var url = $("#url").val()
+    
+    if (url == "") {
+      alert("Todos los datos son obligatorios!");
+    }
+    else {
+      subir(url);
+      $("#Prm1").val("");
+      $("#Prm2").val("");
+      $("#url").val("");
+      i++;
+      $("#sit").val(situaciones[i]);
+      
+    }
+  });
+
+function subir(url){
+    $.ajax({
+        url: "https://www.googleapis.com/youtube/v3/playlistItems",
+        type: "POST",
+        contentType: "application/json",
+        headers: {
+            "Authorization": "Bearer " + key 
+        },
+        data: JSON.stringify({
+            snippet: {
+                playlistId: idPlay[i],
+                resourceId: {
+                    kind: "youtube#video",
+                    videoId: url
+                }
+            }
+        }),
+        success: function(response) {
+            alert("✅ Video agregado a la playlist con éxito.");
+            console.log(response);
+        },
+        error: function(xhr) {
+            alert("❌ Error al agregar el video.");
+            console.error(xhr.responseText);
+        }
+    });
+}
+
+function get(q){
+    $("#r2").empty()
+    var url = "https://www.googleapis.com/youtube/v3/search?part=snippet&key="+key+"&maxResults=10&order=viewCount&q="+ q
+    $.getJSON(url,function(data){
+        for(var k in data.items){
+            var titulo = data.items[k]["snippet"].title;
+            var urlVideo = data.items[k]["id"].videoId
+            var name = data.items[k]["snippet"].channelTitle
+            var urlImg = data.items[k]["snippet"].thumbnails.default.url
+            console.log(data.items[k]["snippet"])
+            $("#r2").append("<div class='music' id='res"+k+"'><div><img src="+urlImg+" style='margin-right:10px'></div><div class='text'><h4>"+titulo+"</h4><p>"+name+"</p><div id="+urlImg+"><button class='buto' value="+titulo+" name="+name+"  id="+urlVideo+">Seleccionar</button></div>")
+        }
+    
+    })
+}
+    $(document).on("click",".buto",function(){
+        $("#porta").attr("src",this.parentNode.getAttribute("id"))
+        $("#Prm1").attr("value",$(this).attr("value"))
+        $("#Prm2").attr("value",$(this).attr("name"))
+        $("#url").attr("value",$(this).attr("id"))
+    })
+    </script>
+</body>
+</html>

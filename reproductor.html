@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/repDis.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="head">
+        <img src="img/back.png" alt="" id="bck" onclick="window.location.href = 'index.html'">
+        <h1 id="ttl">Reproductor</h1>
+    </div>
+    <section id="cont">
+        <div id="op1" class="opt">
+            <img src="img/nostalgia.png" alt="">
+            <p>Nostalgicas</p>
+        </div>
+        <div id="op2" class="opt">
+            <img src="img/calma.png" alt="">
+            <p>Relajantes</p>
+        </div>
+        <div id="op3" class="opt">
+            <img src="img/feliz.png" alt="">
+            <p>Para alegrarse</p>
+        </div>
+        <div id="op4" class="opt">
+            <img src="img/emocionado.png" alt="">
+            <p>Emocionantes</p>
+        </div>
+        <div id="op5" class="opt">
+            <img src="img/sad.png" alt="">
+            <p>Pa' depremirse</p>
+        </div>
+    </section>
+    <section id="table">
+        <section id="playlist">
+
+        </section>
+        <section id="play">
+            <iframe src="" id="masax" ></iframe>
+            <div>
+                <img src="img/Disco.png" alt="" id="disco">
+            </div>
+            <button onclick="going()" id="go">Ir a la playlist</button>
+        
+        </section>
+    </section>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script>
+        var nostalgia = document.getElementById("op1")
+var relajar = document.getElementById("op2")
+var alegria = document.getElementById("op3")
+var emocion = document.getElementById("op4")
+var sad = document.getElementById("op5")
+var go = ""
+
+function going(){
+    window.location.href = go
+}
+
+function clear(){
+    nostalgia.style.height="40px"
+    relajar.style.height="40px"
+    alegria.style.height="40px"
+    emocion.style.height="40px"
+    sad.style.height="40px"
+}
+nostalgia.addEventListener("click", ()=>{
+    clear()
+    nostalgia.style.height="60px"
+    playName = "PLYB1j1gshcjE7lssj55PO1jqjdfgKCikD"
+    Nget()
+    go = "https://www.youtube.com/watch?v=2D3LGlSDor0&list=PLYB1j1gshcjE7lssj55PO1jqjdfgKCikD"
+})
+relajar.addEventListener("click", ()=>{
+    clear()
+    relajar.style.height="60px"
+    playName = "PLYB1j1gshcjEPzoCzxklqC6KaN4hr36mL"
+    Nget()
+    go = "https://www.youtube.com/watch?v=UKRCQPB2Tq0&list=PLYB1j1gshcjEPzoCzxklqC6KaN4hr36mL"
+    
+})
+alegria.addEventListener("click", ()=>{
+    clear()
+    alegria.style.height="60px"
+    playName = "PLYB1j1gshcjFe0fFzkBQmo_1mfHDpI5Pb"
+    Nget()
+    go = "https://www.youtube.com/watch?v=yikSegoIrUk&list=PLYB1j1gshcjFe0fFzkBQmo_1mfHDpI5Pb"
+})
+emocion.addEventListener("click", ()=>{
+    clear()
+    emocion.style.height="60px"
+    playName = "PLYB1j1gshcjF0xlfKTJjsRaAsX7ozpT96"
+    Nget()
+    go = "https://www.youtube.com/watch?v=DZyYapMZSec&list=PLYB1j1gshcjF0xlfKTJjsRaAsX7ozpT96"
+})
+sad.addEventListener("click", ()=>{
+    clear()
+    sad.style.height="60px"
+    playName = "PLYB1j1gshcjHrBCYtplA0lHgLmsjHY1Go"
+    Nget()
+    go = "https://www.youtube.com/watch?v=bnP6G2sI2xc&list=PLYB1j1gshcjHrBCYtplA0lHgLmsjHY1Go"
+})
+var viddeo = document.getElementById("masax")
+var key ="AIzaSyDc99WCBAbMBrcLRSoOZkLuRcNJtOCmud4"
+var playName = ""
+const nami = new XMLHttpRequest()
+
+setInterval(function(){
+    if(playName != ""){
+        get()
+    }else{
+        console.log($("#playlist").children.length)
+        if($(".direc").length < 1) { $("#playlist").append("<p class='direc'>Selecciona una categoria</p>")}
+        
+    }
+},1000)
+
+console.log($("#playlist").children)
+console.log($("op5").children.length)
+
+function Nget(){
+    $("#playlist").empty()
+    get()
+}
+console.log($("#playlist").children.length )
+
+function get(){
+    var url = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&key="+key+"&playlistId="+playName
+    $.getJSON(url,function(data){
+        for(var k in data.items){
+            var titulo = data.items[k]["snippet"].title;
+            var urlImg = data.items[k]["snippet"].thumbnails.medium.url;
+            var urlVideo = data.items[k]["snippet"].resourceId.videoId
+            var name = data.items[k]["snippet"].channelTitle
+            console.log(data.items[k]["snippet"])
+            if($(".music").length <= k){
+                $("#playlist").append("<div class='music' id='res"+k+"'><div><img src="+urlImg+"></div><div class='text'><h4>"+titulo+"</h4><p>"+name+"</p><div><button class='buto' id="+urlVideo+">Reproducir</button></div>")
+            }            
+        }
+    
+    })
+}
+$(document).on("click", ".buto", function () {
+    var urlBase = "https://www.youtube.com/embed/";
+    var videoId = $(this).attr("id");
+    var video = urlBase + videoId;
+    console.log(video)
+    $("#masax").attr("src", video);
+  });
+
+
+    </script>
+</body>
+</html>
